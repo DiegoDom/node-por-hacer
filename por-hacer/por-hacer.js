@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { cpuUsage } = require('process');
 
 
 let listadoPorHacer = [];
@@ -44,15 +45,25 @@ const getListado = () => {
 }
 
 const actualizar = (descripcion, completado) => {
+
     cargarDB();
+    let comp = true;
+
+    if (completado === 'false')
+        comp = false;
+
+    console.log(`Comp: ${ comp }`);
+
     let index = listadoPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
+
     if (index >= 0) {
-        listadoPorHacer[index].completado = completado;
+        listadoPorHacer[index].completado = comp;
         guardarDB();
         return true;
     } else {
         return false;
     }
+
 }
 
 const borrar = (descripcion) => {

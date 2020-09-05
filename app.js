@@ -18,6 +18,7 @@ switch (comando) {
         });
         break;
     case 'actualizar':
+
         let actualizado = porHacer.actualizar(argv.descripcion, argv.completado);
         console.log(actualizado);
         break;
